@@ -19,27 +19,27 @@ pipeline {
 //     }	
 
 // building docker image
-// stage('Build') { 
-//             steps { 
-//                withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
-//                  script{
-//                  app =  docker.build("tech365image")
-//                  }
-//                }
-//             }
-//     }
+stage('Build') { 
+            steps { 
+               withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
+                 script{
+                 app =  docker.build("tech365image")
+                 }
+               }
+            }
+    }
 
-// 	stage('Push') {
-//             steps {
-//                 script{
+	stage('Push') {
+            steps {
+                script{
 			
-//                     docker.withRegistry("https://924338258393.dkr.ecr.us-east-2.amazonaws.com", "ecr:us-east-2:aws-credentials") 
-// 			{
-//                     app.push("latest")
-//                     }
-//                 }
-//             }
-//     	}
+                    docker.withRegistry("https://924338258393.dkr.ecr.us-east-1.amazonaws.com", "ecr:us-east-1:aws-credentials") 
+			{
+                    app.push("latest")
+                    }
+                }
+            }
+    	}
 
 
   }
